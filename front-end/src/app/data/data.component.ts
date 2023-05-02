@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-data',
@@ -10,9 +12,20 @@ export class DataComponent implements OnInit {
   textLabel = 'Hello Angular! Data Component';
   disable = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    console.log("DataComponent")
+    this.http.get<any>(environment.backendUrl + "data").subscribe(
+      {
+          next: ((response: any) => {
+            console.log(response)
+          }),
+          error: (error => {
+            console.log(error)
+          })
+      }
+    )
   }
 
   changeTextLabel(): void {
