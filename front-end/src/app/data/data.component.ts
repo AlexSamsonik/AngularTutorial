@@ -16,6 +16,8 @@ export class DataComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("DataComponent")
+
+    // GET request
     this.http.get<any>(environment.backendUrl + "data").subscribe(
       {
           next: ((response: any) => {
@@ -24,6 +26,22 @@ export class DataComponent implements OnInit {
           error: (error => {
             console.log(error)
           })
+      }
+    )
+
+    // POST request
+    const email = { email: 'angular.fastapi@gmail.com' }
+    const body = JSON.stringify(email)
+    this.http.post<any>(environment.backendUrl + "data",body, {
+      headers: {'Content-type': 'application/json'}
+    }).subscribe(
+      {
+        next: ((response: any) => {
+          console.log(response)
+        }),
+        error: (error => {
+          console.log(error)
+        })
       }
     )
   }

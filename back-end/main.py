@@ -1,7 +1,9 @@
+from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
 
 origins = [
     "http://localhost:4200"
@@ -15,6 +17,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+class User(BaseModel):
+    email: str
+
+
 @app.get("/data")
-async def root():
-    return {"message": "Hello World"}
+async def get_data():
+    return {"message": "Hello FastAPI"}
+
+@app.post("/data")
+def main(user: User):
+    return user
