@@ -3,134 +3,66 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
+interface UserData {
+  pesel: string;
+  name: string;
+  job: string;
+  posts: string;
+  likes: string;
+  followers: string;
+}
+
 @Component({
   selector: 'app-user-data',
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.css']
 })
-export class UserDataComponent implements OnInit{
+export class UserDataComponent implements OnInit {
 
-  pesel = "";
-  name = "";
-  job = "";
-  posts = "";
-  likes = "";
-  followers = ""
+  userData: UserData = {
+    pesel: "",
+    name: "",
+    job: "",
+    posts: "",
+    likes: "",
+    followers: ""
+  };
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private activetedRoute: ActivatedRoute,
-  ){}
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-
-    this.http.get<any>(environment.backendUrl + "name").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.name = response.name
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.http.get<any>(environment.backendUrl + "job").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.job = response.job
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.http.get<any>(environment.backendUrl + "posts").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.posts = response.posts
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.http.get<any>(environment.backendUrl + "likes").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.likes = response.likes
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.http.get<any>(environment.backendUrl + "followers").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.followers = response.followers
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.activetedRoute.queryParams.subscribe(params => {
-      this.pesel = params['pesel'];
-    })
+    this.loadData();
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.userData.pesel = params['pesel'];
+    });
   }
 
   logOut() {
-    this.router.navigate(['logout'])
+    this.router.navigate(['logout']);
   }
 
   update() {
-    
-    this.http.get<any>(environment.backendUrl + "posts").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.posts = response.posts
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.http.get<any>(environment.backendUrl + "likes").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.likes = response.likes
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
-
-    this.http.get<any>(environment.backendUrl + "followers").subscribe(
-      {
-        next: ((response: any) => {
-          console.log(response)
-          this.followers = response.followers
-        }),
-        error: (error => {
-          console.log(error)
-        })
-      }
-    )
+    this.loadData();
   }
 
+  private loadData() {
+    const endpoints = ['name', 'job', 'posts', 'likes', 'followers'];
+    for (const endpoint of endpoints) {
+      this.http.get<any>(`${environment.backendUrl}${endpoint}`).subscribe(
+        {
+          next: ((response: any) => {
+            console.log(response);
+            this.userData[endpoint as keyof UserData] = response[endpoint];
+          }),
+          error: (error => {
+            console.log(error);
+          })
+        }
+      );
+    }
+  }
 }
