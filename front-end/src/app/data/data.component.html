@@ -1,3 +1,5 @@
-<button (click)="changeTextLabel()">Change Text</button>
+<button [disabled]="disable" (click)="changeTextLabel()">Change Text</button>
+
+<button (click)="changeButtonEnable()">Change Enable</button>
 
 <p>{{textLabel}}</p>

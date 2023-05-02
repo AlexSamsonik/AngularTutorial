@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DataComponent implements OnInit {
 
   textLabel = 'Hello Angular! Data Component';
+  disable = false;
 
   constructor() { }
 
@@ -16,6 +17,10 @@ export class DataComponent implements OnInit {
 
   changeTextLabel(): void {
     this.textLabel = 'Text Label has been changed! Great!'
+  }
+
+  changeButtonEnable(): void {
+    this.disable = !this.disable
   }
 
 }
