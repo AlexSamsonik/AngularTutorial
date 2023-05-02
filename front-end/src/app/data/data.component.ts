@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './data.component.html',
   styleUrls: ['./data.component.css']
 })
-export class DataComponent implements OnInit {
+export class DataComponent implements OnInit{
 
   textLabel = 'Hello Angular! Data Component';
   disable = false;
