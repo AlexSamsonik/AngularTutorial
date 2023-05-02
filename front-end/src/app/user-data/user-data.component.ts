@@ -12,6 +12,7 @@ export class UserDataComponent implements OnInit{
   email = "";
 
   constructor(
+    private http: HttpClient,
     private router: Router,
     private activetedRoute: ActivatedRoute,
   ){}

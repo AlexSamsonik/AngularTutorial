@@ -2,6 +2,8 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+# uvicorn main:app --reload
+
 app = FastAPI()
 
 
