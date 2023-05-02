@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit{
 
-  email = "";
+  pesel = "";
 
   constructor(private router: Router){}
 
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit{
   }
 
   openUserDataPage() {
-    this.router.navigate(["userdata"], {queryParams: {email: this.email}})
+    this.router.navigate(["userdata"], {queryParams: {pesel: this.pesel}})
   }
 
 }
