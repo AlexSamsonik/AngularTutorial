@@ -13,7 +13,7 @@
             <div class="job">{{userData.job}}</div>
 
             <div class="actions">
-                <button class="btn" (click)="update()">Update</button>
+                <button id="buttonUpdate" class="btn" (click)="update()">Update</button>
                 <button class="btn" (click)="logOut()">Logout</button>
                 <div id="userPesel" class="job" *ngIf="userData.pesel">{{userData.pesel}}</div>
             </div>
@@ -21,15 +21,15 @@
 
         <div class="stats">
             <div class="box">
-                <span class="value">{{userData.posts}}</span>
+                <span id="userDataPosts" class="value">{{userData.posts}}</span>
                 <span class="parameter">Posts</span>
             </div>
             <div class="box">
-                <span class="value">{{userData.likes}}</span>
+                <span id="userDataLikes" class="value">{{userData.likes}}</span>
                 <span class="parameter">Likes</span>
             </div>
             <div class="box">
-                <span class="value">{{userData.followers}}</span>
+                <span id="userDataFollowers" class="value">{{userData.followers}}</span>
                 <span class="parameter">Followers</span>
             </div>
         </div>

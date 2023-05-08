@@ -3,9 +3,9 @@ Documentation  Login Functionality
 Library  SeleniumLibrary
 
 *** Variables ***
-${pesel}     891005140000
-${id_input_pesel}     id:inputPesel
-${id_user_pesel}  id:userPesel
+${pesel}            86000015000
+${id_input_pesel}   id:inputPesel
+${id_user_pesel}    id:userPesel
 
 *** Test Cases ***
 Verify Successful Login to AngularApp
