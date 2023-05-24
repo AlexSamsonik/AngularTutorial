@@ -1,5 +1,8 @@
+from requests import status_codes
+
+
 def test_get_followers_success(followers_response):
-    assert followers_response.status_code == 200
+    assert followers_response.status_code == status_codes.ok
 
 
 def test_get_followers_max(followers_response_data):

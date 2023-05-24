@@ -6,6 +6,7 @@ BASE_URL = "http://127.0.0.1:8000"
 POSTS = "posts"
 LIKES = "likes"
 FOLLOWERS = "followers"
+DATA = "data"
 
 
 @pytest.fixture(scope="session")
@@ -39,3 +40,14 @@ def followers_response():
 @pytest.fixture()
 def followers_response_data(followers_response):
     return followers_response.json().get(FOLLOWERS)
+
+
+@pytest.fixture()
+def data_response():
+    data_url = urllib.parse.urljoin(BASE_URL, DATA)
+    return requests.get(data_url)
+
+
+@pytest.fixture()
+def data_response_json(data_response):
+    return data_response.json()

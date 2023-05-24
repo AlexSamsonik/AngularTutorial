@@ -1,5 +1,8 @@
+from requests import status_codes
+
+
 def test_get_posts_success(posts_response):
-    assert posts_response.status_code == 200
+    assert posts_response.status_code == status_codes.ok
 
 
 def test_get_posts_max(posts_response_data):
