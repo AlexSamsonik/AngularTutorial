@@ -1,4 +1,6 @@
-from requests import status_codes
+from requests.status_codes import codes
+
+POSTS = "posts"
 
 
 def test_get_posts_success(posts_response):
@@ -9,7 +11,7 @@ def test_get_posts_success(posts_response):
     :return: None
     :raises AssertionError: If the response status code is not equal to `status_codes.ok`.
     """
-    assert posts_response.status_code == status_codes.ok
+    assert posts_response.status_code == codes.ok
 
 
 def test_get_posts_max(posts_response_data):
@@ -20,7 +22,7 @@ def test_get_posts_max(posts_response_data):
     :return: None
     :raises AssertionError: If the number of posts is greater than 99.
     """
-    assert posts_response_data <= 99
+    assert posts_response_data.get(POSTS) <= 99
 
 
 def test_get_posts_min(posts_response_data):
@@ -31,7 +33,7 @@ def test_get_posts_min(posts_response_data):
     :return: None
     :raises AssertionError: If the number of posts is less than 0.
     """
-    assert posts_response_data >= 0
+    assert posts_response_data.get(POSTS) >= 0
 
 
 def test_get_posts_type(posts_response_data):
@@ -42,4 +44,4 @@ def test_get_posts_type(posts_response_data):
     :return: None
     :raises AssertionError: If the data type of the number of posts is not `int`.
     """
-    assert type(posts_response_data) == int
+    assert type(posts_response_data.get(POSTS)) == int

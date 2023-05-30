@@ -1,4 +1,6 @@
-from requests import status_codes
+from requests.status_codes import codes
+
+FOLLOWERS = "followers"
 
 
 def test_get_followers_success(followers_response):
@@ -9,7 +11,7 @@ def test_get_followers_success(followers_response):
     :return: None
     :raises AssertionError: If the response status code is not equal to `status_codes.ok`.
     """
-    assert followers_response.status_code == status_codes.ok
+    assert followers_response.status_code == codes.ok
 
 
 def test_get_followers_max(followers_response_data):
@@ -20,7 +22,7 @@ def test_get_followers_max(followers_response_data):
     :return: None
     :raises AssertionError: If the number of followers is greater than 999.
     """
-    assert followers_response_data <= 999
+    assert followers_response_data.get(FOLLOWERS) <= 999
 
 
 def test_get_followers_min(followers_response_data):
@@ -31,7 +33,7 @@ def test_get_followers_min(followers_response_data):
     :return: None
     :raises AssertionError: If the number of followers is less than 100.
     """
-    assert followers_response_data >= 100
+    assert followers_response_data.get(FOLLOWERS) >= 100
 
 
 def test_get_followers_type(followers_response_data):
@@ -42,4 +44,4 @@ def test_get_followers_type(followers_response_data):
     :return: None
     :raises AssertionError: If the data type of the number of followers is not `int`.
     """
-    assert type(followers_response_data) == int
+    assert type(followers_response_data.get(FOLLOWERS)) == int

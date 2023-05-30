@@ -1,4 +1,6 @@
-from requests import status_codes
+from requests.status_codes import codes
+
+MESSAGE = "message"
 
 
 def test_response_status_code(data_response):
@@ -9,7 +11,7 @@ def test_response_status_code(data_response):
     :return: None
     :raises AssertionError: If the response status code is not equal to `status_codes.ok`.
     """
-    assert data_response.status_code == status_codes.ok
+    assert data_response.status_code == codes.ok
 
 
 def test_successful_response(data_response_json):
@@ -20,7 +22,7 @@ def test_successful_response(data_response_json):
     :return: None
     :raises AssertionError: If the "message" key in the response does not have the expected value.
     """
-    assert data_response_json.get("message") == "Hello FastAPI"
+    assert data_response_json.get(MESSAGE) == "Hello FastAPI"
 
 
 def test_response_data_type(data_response_json):
@@ -42,7 +44,7 @@ def test_message_key_exists(data_response_json):
     :return: None
     :raises AssertionError: If the "message" key does not exist in the response.
     """
-    assert "message" in data_response_json
+    assert MESSAGE in data_response_json
 
 
 def test_message_value(data_response_json):
@@ -53,7 +55,7 @@ def test_message_value(data_response_json):
     :return: None
     :raises AssertionError: If the value of the "message" key is not equal to "Hello FastAPI".
     """
-    assert data_response_json.get("message") == "Hello FastAPI"
+    assert data_response_json.get(MESSAGE) == "Hello FastAPI"
 
 
 def test_message_value_type(data_response_json):
@@ -64,7 +66,7 @@ def test_message_value_type(data_response_json):
     :return: None
     :raises AssertionError: If the value of the "message" key is not of type str.
     """
-    assert isinstance(data_response_json.get("message"), str)
+    assert isinstance(data_response_json.get(MESSAGE), str)
 
 
 def test_response_structure(data_response_json):
@@ -75,7 +77,7 @@ def test_response_structure(data_response_json):
     :return: None
     :raises AssertionError: If the response contains keys other than "message".
     """
-    assert set(data_response_json.keys()) == {"message"}
+    assert set(data_response_json.keys()) == {MESSAGE}
 
 
 def test_response_content_type(data_response):
