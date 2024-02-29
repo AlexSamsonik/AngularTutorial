@@ -10,9 +10,9 @@ ${id_user_data_followers}   id:userDataFollowers
 
 *** Test Cases ***
 Verify Successful Update
-    [documentation]  This test case verifies that user data is to successfully updated
-    [tags]  Smoke
-    Open Browser  http://localhost:4200/userdata?pesel=86598914789  Chrome
+    [Documentation]  This test case verifies that user data is to successfully updated
+    [Tags]  Smoke
+    Open Browser  http://localhost:4200/userdata?pesel=86598914789  Firefox
     ${number_of_posts}    Get Text    ${id_user_data_posts}
     ${number_of_likes}    Get Text    ${id_user_data_likes}
     ${number_of_followers}    Get Text    ${id_user_data_followers}

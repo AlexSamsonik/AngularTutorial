@@ -9,9 +9,9 @@ ${id_user_pesel}    id:userPesel
 
 *** Test Cases ***
 Verify Successful Login to AngularApp
-    [documentation]  This test case verifies that user is able to successfully Login to AngularApp
-    [tags]  Smoke
-    Open Browser  http://localhost:4200/  Chrome
+    [Documentation]  This test case verifies that user is able to successfully Login to AngularApp
+    [Tags]  Smoke
+    Open Browser  http://localhost:4200/  Firefox
     Wait Until Element Is Visible  ${id_input_pesel}
     Input Text  id:inputPesel  ${pesel}
     Click Element  id:buttonLogin
