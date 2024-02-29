@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "AngularTutorial"
+version = "0.1.1"
+description = ""
+authors = ["Aliaksandr Samsonik <aliaksandr.samsonik@gmail.com>"]
+readme = "README.md"
+packages = [{include = "./back-end/src"}]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+pytest = "^7.4.3"
+faker = "^23.3.0"
+pydantic = "^2.6.3"
+fastapi = "^0.110.0"
+uvicorn = "^0.27.1"
+robotframework = "^7.0"
+robotframework-seleniumlibrary = "^6.2.0"
+robotframework-tidy = "^4.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
